@@ -1,0 +1,36 @@
+@import 'tailwindcss';
+
+/* Design tokens. Tailwind turns each one into utilities such as bg-ink or text-muted. */
+@theme {
+  --font-sans: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+
+  --color-ink: #16213a;
+  --color-muted: #586178;
+  --color-paper: #f2f4f8;
+  --color-line: #d3d9e5;
+  --color-brand: #2b3f9e;
+  --color-brand-dark: #1f2e78;
+  --color-marigold: #f2b632;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  /* Headings use the wide cut of Archivo, like the title line of a printed form. */
+  h1,
+  h2 {
+    font-stretch: 116%;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+}

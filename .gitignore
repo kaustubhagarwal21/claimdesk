@@ -1,0 +1,22 @@
+# .NET
+bin/
+obj/
+TestResults/
+.vs/
+*.user
+
+# Front end
+node_modules/
+dist/
+test-results/
+playwright-report/
+
+# The Docker build copies the built front end into wwwroot; it is never committed.
+api/ClaimDesk.Api/wwwroot/*
+!api/ClaimDesk.Api/wwwroot/.gitkeep
+
+# Local settings and editors
+.env
+.idea/
+.vscode/
+*.log

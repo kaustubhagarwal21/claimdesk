@@ -1,0 +1,58 @@
+@api = http://localhost:5080
+
+### Users (no header needed)
+GET {{api}}/api/users
+
+### Customers
+GET {{api}}/api/customers
+X-User-Id: 1
+
+### Quote a policy (nothing is saved)
+POST {{api}}/api/policies/quote
+X-User-Id: 1
+Content-Type: application/json
+
+{ "customerId": 1, "type": "Motor", "sumInsured": 500000, "startDate": "2026-10-01" }
+
+### Issue a policy (Agent or Manager)
+POST {{api}}/api/policies
+X-User-Id: 1
+Content-Type: application/json
+
+{ "customerId": 1, "type": "Motor", "sumInsured": 500000, "startDate": "2026-10-01" }
+
+### File a claim (Agent)
+POST {{api}}/api/claims
+X-User-Id: 1
+Content-Type: application/json
+
+{ "policyId": 1, "incidentDate": "2026-10-05", "amount": 42000, "description": "Rear bumper damaged in a parking lot" }
+
+### Review it (Adjuster)
+POST {{api}}/api/claims/1/review
+X-User-Id: 2
+
+### Claim with its audit trail. Copy rowVersion from this response into approve, reject and pay.
+GET {{api}}/api/claims/1
+X-User-Id: 3
+
+### Approve it (a different Adjuster, or a Manager)
+POST {{api}}/api/claims/1/approve
+X-User-Id: 3
+Content-Type: application/json
+
+{ "rowVersion": "AAAAAAAAB9E=" }
+
+### Pay it (Manager)
+POST {{api}}/api/claims/1/pay
+X-User-Id: 4
+Content-Type: application/json
+
+{ "rowVersion": "AAAAAAAAB9I=" }
+
+### Claims summary from the stored procedure
+GET {{api}}/api/reports/claims-summary?from=2026-01-01&to=2026-12-31
+X-User-Id: 4
+
+### OpenAPI document
+GET {{api}}/openapi/v1.json

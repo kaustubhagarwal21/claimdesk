@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/api/">
+    <Project Path="api/ClaimDesk.Api/ClaimDesk.Api.csproj" />
+    <Project Path="api/ClaimDesk.Tests/ClaimDesk.Tests.csproj" />
+  </Folder>
+</Solution>
